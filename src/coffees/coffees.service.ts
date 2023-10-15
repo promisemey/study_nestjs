@@ -22,7 +22,7 @@ export class CoffeesService {
   }
 
   //   创建
-  create(createCoffee: Coffee) {
+  create(createCoffee: any) {
     this.coffees.push(createCoffee);
   }
 
