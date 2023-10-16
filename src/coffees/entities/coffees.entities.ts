@@ -12,6 +12,6 @@ export class Coffee {
   @Column()
   brand: string;
 
-  @Column('json', { nullable: true }) // json对象 可以为空
+  @Column('json', { nullable: true }) // json对象 不可以为空
   flavors: string[];
 }
