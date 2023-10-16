@@ -11,10 +11,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
-      port: 3306,
+      port: 3307,
       username: 'root',
       password: 'root',
-      database: 'foods_app',
+      database: 'mysql',
       autoLoadEntities: true, // 启用自动加载所有实体类
       synchronize: true, // 启用自动同步，只在开发中使用
     }),
