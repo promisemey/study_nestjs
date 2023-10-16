@@ -24,6 +24,7 @@ export class CoffeesService {
   //   创建
   create(createCoffee: any) {
     this.coffees.push(createCoffee);
+    return createCoffee;
   }
 
   //   修改
