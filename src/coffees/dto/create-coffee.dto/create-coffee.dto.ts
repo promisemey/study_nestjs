@@ -1,4 +1,5 @@
 import { IsString } from 'class-validator';
+import { Flavor } from 'src/coffees/entities/flavor.entities';
 
 export class CreateCoffeeDto {
   // 数据传输对象
