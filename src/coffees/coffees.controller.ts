@@ -27,8 +27,8 @@ export class CoffeesController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    const coffee = this.coffeesService.findOne(id);
+  async findOne(@Param('id') id: string) {
+    const coffee = await this.coffeesService.findOne(id);
     if (!coffee) {
       // 抛出异常状态码
       // throw new HttpException(`coffee ${id} not found`, HttpStatus.NOT_FOUND);
@@ -52,7 +52,7 @@ export class CoffeesController {
 
   // 获取指定参数
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.coffeesService.remove(id);
+  async remove(@Param('id') id: string) {
+    return await this.coffeesService.remove(id);
   }
 }
