@@ -1,9 +1,11 @@
 import {
   Column,
+  CreateDateColumn,
   Entity,
   JoinTable,
   ManyToMany,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { Flavor } from './flavor.entities';
 
@@ -12,6 +14,8 @@ import { Flavor } from './flavor.entities';
 export class Coffee {
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  uuid: string;
 
   @Column()
   name: string;
@@ -27,4 +31,10 @@ export class Coffee {
     { cascade: true }, // ['insert','update']
   )
   flavors: Flavor[];
+
+  @CreateDateColumn()
+  createdAt: Date; // 创建日期字段
+
+  @UpdateDateColumn()
+  updatedAt: Date; // 更新日期字段
 }

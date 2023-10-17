@@ -1,8 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Coffee } from './entities/coffees.entities';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, DataSource, RelationId } from 'typeorm';
+import { Repository } from 'typeorm';
+import { PaginationCoffeeDto } from './dto/pagination-coffee.dto/pagination-coffee.dto';
 import { CreateCoffeeDto } from './dto/create-coffee.dto/create-coffee.dto';
+import { UpdateCoffeeDto } from './dto/update-coffee.dto/update-coffee.dto';
+import { Coffee } from './entities/coffees.entities';
 import { Flavor } from './entities/flavor.entities';
 
 @Injectable()
@@ -24,9 +26,16 @@ export class CoffeesService {
   ) {}
   //   获取全部数据
 
-  async findAll() {
+  async findAll(paginationCoffeeDto: PaginationCoffeeDto) {
+    let { limit, offset } = paginationCoffeeDto;
     return await this.coffeeRepository.find({
       relations: ['flavors'],
+      skip: (offset - 1) * limit, // 跳过offset个数据
+      take: limit, // 每页显示数据
+      order: {
+        // 排序  根据创建时间升序
+        createdAt: 'ASC',
+      },
     });
   }
 
@@ -61,7 +70,7 @@ export class CoffeesService {
   }
 
   //   修改
-  async update(id: string, updateCoffeeDto: any) {
+  async update(id: string, updateCoffeeDto: UpdateCoffeeDto) {
     // const coffee = await this.coffeeRepository.findBy({ id });
     // 判断flavors是否存在
     const flavors =

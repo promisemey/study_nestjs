@@ -7,11 +7,16 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
+      TZ: Asia/Shanghai # 设置时区为 "Asia/Shanghai"，即北京时区
       # MYSQL_DATABASE: your_database_name
       # MYSQL_USER: your_mysql_user
       # MYSQL_PASSWORD: your_mysql_password
     ports:
       - '3307:3306'
+    volumes:
+      - mysql_data:/var/lib/mysql
+volumes:
+  mysql_data:
 # image：使用的 MySQL 镜像版本。这里使用的是 MySQL 8.0.11。
 # container_name：为容器指定一个名称，这里命名为 my_mysql，你可以根据需要进行修改。
 # restart：设置容器在退出后是否自动重启。

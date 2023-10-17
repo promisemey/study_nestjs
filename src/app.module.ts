@@ -17,6 +17,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       database: 'mysql',
       autoLoadEntities: true, // 启用自动加载所有实体类
       synchronize: true, // 启用自动同步，只在开发中使用
+      timezone: 'Z', // 转换为中国时区
     }),
   ],
   controllers: [AppController, Nest1Controller],
