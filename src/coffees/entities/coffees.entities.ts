@@ -23,6 +23,9 @@ export class Coffee {
   @Column()
   brand: string;
 
+  @Column({ default: 0 })
+  recommendations: number; // 推荐
+
   // 用于多对多关系中，用于指定关系的所有者方。它还用于设置自定义连接表的名称、列名和引用列。
   @JoinTable()
   @ManyToMany(
