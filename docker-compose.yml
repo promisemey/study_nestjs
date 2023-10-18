@@ -8,7 +8,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       TZ: Asia/Shanghai # 设置时区为 "Asia/Shanghai"，即北京时区
-      # MYSQL_DATABASE: your_database_name
+      MYSQL_DATABASE: mysql
       # MYSQL_USER: your_mysql_user
       # MYSQL_PASSWORD: your_mysql_password
     ports:

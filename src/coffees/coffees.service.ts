@@ -4,8 +4,8 @@ import { DataSource, Repository } from 'typeorm';
 import { PaginationCoffeeDto } from './dto/pagination-coffee.dto/pagination-coffee.dto';
 import { CreateCoffeeDto } from './dto/create-coffee.dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto/update-coffee.dto';
-import { Coffee } from './entities/coffees.entities';
-import { Flavor } from './entities/flavor.entities';
+import { Coffee } from './entities/coffees.entity';
+import { Flavor } from './entities/flavor.entity';
 import { Event } from 'src/events/entities/event.entity';
 
 @Injectable()

@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Flavor } from './flavor.entities';
+import { Flavor } from './flavor.entity';
 
 // @Entity('coffees') // coffees 为表
 @Entity() // coffee 为表
