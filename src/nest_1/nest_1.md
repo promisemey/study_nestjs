@@ -17,3 +17,9 @@
 
 4. @Patch() 修改部分资源
 ```
+
+```
+    await queryRunner.query(
+      `alter table "coffee" rename column "title" to "name"`,
+    );
+```

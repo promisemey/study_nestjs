@@ -59,7 +59,7 @@ export class CoffeesService {
 
   //   获取全部数据
   async findAll(paginationCoffeeDto: PaginationCoffeeDto) {
-    let { limit, offset } = paginationCoffeeDto;
+    let { limit, offset = 1 } = paginationCoffeeDto;
     return await this.coffeeRepository.find({
       relations: ['flavors'],
       skip: (offset - 1) * limit, // 跳过offset个数据
@@ -105,6 +105,8 @@ export class CoffeesService {
   async update(id: string, updateCoffeeDto: UpdateCoffeeDto) {
     // const coffee = await this.coffeeRepository.findBy({ id });
     // 判断flavors是否存在
+    console.log('修改 => flavors');
+
     const flavors =
       updateCoffeeDto.flavors &&
       (await Promise.all(
