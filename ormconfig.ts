@@ -1,19 +1,5 @@
 import { DataSource } from 'typeorm';
 
-// module.exports = new DataSource({
-//   type: 'mysql',
-//   host: 'mysql',
-//   port: 3307,
-//   username: 'root',
-//   password: 'root',
-//   database: 'mysql',
-//   entities: ['dist/**/*.entity{.js}'],
-//   migrations: ['dist/migrations/*{.js}'],
-//   cli: {
-//     migrationsDir: 'src/migrations',
-//   },
-// });
-
 export const connectionSource = new DataSource({
   migrationsTableName: 'migrations',
   type: 'mysql',
@@ -22,17 +8,19 @@ export const connectionSource = new DataSource({
   username: 'root',
   password: 'root',
   database: 'mysql',
-  // logging: false,
-  // synchronize: false,
   name: 'default',
-  entities: ['src/**/**.entity,.js'],
-  migrations: ['src/migrations/**/*,.js'],
+  entities: ['dist/src/**/*.entity.js'],
+  migrations: ['dist/src/migrations/*.js'],
+  // logging: false,
+  synchronize: true,
   // subscribers: ['src/subscriber/**/*{.ts,.js}'],
 });
 
-connectionSource.initialize();
-// database.config.ts
-
 // npx typeorm migration:create ./src/migrations/CoffeeRefactor
-
 // 迁移
+
+// 执行迁移
+// yarn typeorm migration:run -d ./dist/ormconfig
+
+// 回退迁移
+// yarn typeorm migration:revert -d ./dist/ormconfig
