@@ -18,6 +18,7 @@ import { UpdateCoffeeDto } from './dto/update-coffee.dto/update-coffee.dto';
 import { PaginationCoffeeDto } from './dto/pagination-coffee.dto/pagination-coffee.dto';
 import { REQUEST } from '@nestjs/core';
 import { Request } from 'express';
+import { Public } from 'src/common/decorators/public.decorator';
 
 @Controller('coffees')
 export class CoffeesController {
@@ -28,6 +29,7 @@ export class CoffeesController {
     // console.log('控制器已创建！', request.headers);
   }
 
+  @Public()
   @Get() // 装饰器
   findAll(@Query() paginationCoffeeDto: PaginationCoffeeDto) {
     return this.coffeesService.findAll(paginationCoffeeDto);
