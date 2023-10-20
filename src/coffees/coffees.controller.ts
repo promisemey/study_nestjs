@@ -10,15 +10,23 @@ import {
   Delete,
   Query,
   NotFoundException,
+  Inject,
 } from '@nestjs/common';
 import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto/update-coffee.dto';
 import { PaginationCoffeeDto } from './dto/pagination-coffee.dto/pagination-coffee.dto';
+import { REQUEST } from '@nestjs/core';
+import { Request } from 'express';
 
 @Controller('coffees')
 export class CoffeesController {
-  constructor(private readonly coffeesService: CoffeesService) {}
+  constructor(
+    private readonly coffeesService: CoffeesService,
+    @Inject(REQUEST) private readonly request: Request,
+  ) {
+    console.log('控制器已创建！', request.headers);
+  }
 
   @Get() // 装饰器
   findAll(@Query() paginationCoffeeDto: PaginationCoffeeDto) {
