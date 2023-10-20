@@ -25,7 +25,7 @@ export class CoffeesController {
     private readonly coffeesService: CoffeesService,
     @Inject(REQUEST) private readonly request: Request,
   ) {
-    console.log('控制器已创建！', request.headers);
+    // console.log('控制器已创建！', request.headers);
   }
 
   @Get() // 装饰器
@@ -41,7 +41,8 @@ export class CoffeesController {
       // throw new HttpException(`coffee ${id} not found`, HttpStatus.NOT_FOUND);
       throw new NotFoundException(`coffee ${id} not found`);
     }
-    return { statusCode: HttpStatus.OK, data: coffee };
+    // return { statusCode: HttpStatus.OK, data: coffee };
+    return coffee;
   }
 
   // 获取指定参数

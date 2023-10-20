@@ -8,8 +8,11 @@ import { Coffee } from './entities/coffees.entity';
 import { Flavor } from './entities/flavor.entity';
 import { Event } from 'src/events/entities/event.entity';
 import { COFFEE_BRANDS } from './coffee.constants';
+import { ConfigService, ConfigType } from '@nestjs/config';
+import coffeesConfig from './config/coffees.config';
 
-@Injectable({ scope: Scope.REQUEST })
+// @Injectable({ scope: Scope.REQUEST })
+@Injectable()
 export class CoffeesService {
   // private coffees: Coffee[] = [
   //   {
@@ -27,9 +30,16 @@ export class CoffeesService {
     private readonly flavorRepository: Repository<Flavor>,
     private readonly dataSource: DataSource,
     @Inject(COFFEE_BRANDS) coffeeBrands: string[],
+    private readonly configService: ConfigService,
+    @Inject(coffeesConfig.KEY)
+    private readonly coffeeConfig: ConfigType<typeof coffeesConfig>,
   ) {
-    console.log('coffeeBrands => ', coffeeBrands);
-    console.log('服务初始化！');
+    // this.configService.get(coffeeConfig.foo)
+    console.log(coffeeConfig);
+    // const config = this.configService.get('environment');
+    // console.log(config);
+    // console.log('coffeeBrands => ', coffeeBrands);
+    // console.log('服务初始化！');
   }
 
   // 事务的运用
@@ -83,8 +93,9 @@ export class CoffeesService {
       where: { id },
       relations: ['flavors'],
     });
-    if (!coffee) {
-      throw new NotFoundException('coffee id not found');
+
+    if (!coffee.length) {
+      throw new NotFoundException(`coffee ${id} not found`);
     }
     return coffee;
   }
